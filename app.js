@@ -13,7 +13,7 @@ newsApp.config(function($stateProvider) {
   });
 
   $stateProvider.state('beats.reporters', {
-    url: '/beats/:beatId/',
+    url: ':beatId/',
     templateUrl: 'partials/beats.reporters.html',
     controller: 'ReportersCtrl'
   });
