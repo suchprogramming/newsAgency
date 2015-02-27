@@ -1,8 +1,15 @@
-<div ng-show="beat.reporters.length" class="container">
+<div ng-show="beat.reporters.length">
   <div class="row">
     <h4>Reporter List for {{beat.name}}</h4>
     <ul>
-      <li ng-repeat="item in beat.reporters">{{item.name}} {{item.birthDay}} {{item.timeEmployed}}</li>
+      <li ng-repeat="item in beat.reporters">
+        <a ng-click="show = !show">{{item.name}}</a>
+        <div class="reporter-details" ng-show="show">
+          <br>
+          <p>Reporter Birthday: {{item.birthDay}}</p>
+          <p>Employment Length: {{item.timeEmployed}}</p>
+        </div>
+      </li>
     </ul>
   </div>
 </div>

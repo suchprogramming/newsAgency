@@ -1,12 +1,19 @@
 <div class="container">
- <div class="row well well-sm">
-   <h4>Current Active Beats</h4>
-   <ul>
-     <li ng-repeat="item in beats">
-       <a ui-sref="beats.reporters({beatId: item.id})">{{item.name}}</a>
-     </li>
-   </ul>
- </div>
+  <div class="row well well-sm">
+    <h4>Search Beats:</h4>
+    <form class="form-inline" role="form">
+     <div class="form-group">
+       <input ng-model="query" type="text" class="form-control" placeholder="Search">
+     </div>
+    </form>
+    <h5 ng-show="beats.length && filtered.length"> Active Beats </h5>
+    <h5 ng-show="beats.length && !filtered.length"> No Matches </h5>
+     <ul>
+       <li ng-repeat="item in filtered = (beats | filter:query)">
+         <a ui-sref="beats.reporters({beatId: item.id})">{{item.name}}</a>
+       </li>
+     </ul>
+  </div>
 </div>
 
 <div class="container">
