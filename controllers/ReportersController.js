@@ -2,7 +2,6 @@ newsApp.controller('ReportersCtrl', function ReportersCtrl($scope, $stateParams,
   $scope.beat = UtilitiesFactory.findById(BeatsFactory.beats, $stateParams.beatId);
   $scope.addReporter = function() {
     $scope.beat.reporters.push({name: $scope.reporterName, birthDay: $scope.birthDay, timeEmployed: $scope.timeEmployed });
-    console.log($scope.beat);
     $scope.reporterName = null;
     $scope.birthDay = null;
     $scope.timeEmployed = null;
