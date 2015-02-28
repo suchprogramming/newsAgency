@@ -1,36 +1,32 @@
-<div class="container">
-  <div class="row well well-sm">
-    <h4>Search Beats:</h4>
-    <form class="form-inline" role="form">
-      <div class="form-group">
-        <input ng-model="query" type="text" class="form-control" placeholder="Search">
-      </div>
-    </form>
-    <h5 ng-show="beats.length && filtered.length"> Active Beats </h5>
-    <h5 ng-show="beats.length && !filtered.length"> No Matches </h5>
-    <ul>
-      <li ng-repeat="item in filtered = (beats | filter:query)">
-        <h5><a ui-sref="beats.reporters({beatId: item.id})" ng-click="show = !show">{{item.name}}</a></h5>
-        <ul>
-          <li ng-repeat="item in item.reporters" ng-show="show" ng-click="showRep = !showRep"><a class="label label-default">{{item.name}}</a>
-            <span class="reporter-details" ng-show="showRep"> <strong>Birthday:</strong> {{item.birthDay}} <strong>Employment Length:</strong> {{item.timeEmployed}}</span>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+<div class="row well well-sm">
+  <h4>Search Beats:</h4>
+  <form class="form-inline" role="form">
+    <div class="form-group">
+      <input ng-model="query" type="text" class="form-control" placeholder="Beat or reporter name">
+    </div>
+  </form>
+  <h5 ng-show="beats.length && filtered.length"> Active Beats </h5>
+  <h5 ng-show="beats.length && !filtered.length"> No Matches </h5>
+  <ul>
+    <li ng-repeat="item in filtered = (beats | filter:query)">
+      <h5><a ui-sref="beats.reporters({beatId: item.id})" ng-click="show = !show">{{item.name}}</a></h5>
+      <ul>
+        <li ng-repeat="item in filtered = ( item.reporters | filter:query)" ng-show="show" ng-click="showRep = !showRep"><a class="label label-default">{{item.name}}</a>
+          <span class="reporter-details" ng-show="showRep"> <strong>Birthday:</strong> {{item.birthDay}} <strong>Employment Length:</strong> {{item.timeEmployed}}</span>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </div>
 
-<div class="container">
-  <div class="row">
-    <h4>Add Beat</h4>
-    <form class="form" ng-submit="BeatsFactory.addBeat()" role="form">
-      <div class="form-group">
-        <input type="text" class="form-control" ng-model="BeatsFactory.beatName" placeholder = "New Beat Name...">
-      </div>
-      <button type="submit" class="btn btn-success">Add</button>
-    </form>
-  </div>
+<div class="row">
+  <h4>Add Beat</h4>
+  <form class="form" ng-submit="BeatsFactory.addBeat()" role="form">
+    <div class="form-group">
+      <input type="text" class="form-control" ng-model="BeatsFactory.beatName" placeholder = "New Beat Name...">
+    </div>
+    <button type="submit" class="btn btn-success">Add</button>
+  </form>
 </div>
 
 <div ui-view></div>
